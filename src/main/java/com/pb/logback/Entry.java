@@ -1,20 +1,14 @@
 package com.pb.logback;
 
-import ch.qos.logback.classic.*;
-import ch.qos.logback.core.util.StatusPrinter;
+import com.pb.logback.core.Core;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 public class Entry {
 
-    public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger("ROOT");
+    private static final Logger logger = LoggerFactory.getLogger(Entry.class);
 
-        LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-        StatusPrinter.print(loggerContext);
-        loggerContext.getLoggerList().stream().forEach((log) -> {
-            logger.info("The name of logger is {}", log.getName());
-        });
+    public static void main(String[] args) {
 
         logger.trace("Printed with level trace");
         logger.debug("Printed with level debug");
@@ -25,5 +19,7 @@ public class Entry {
         if (logger.isDebugEnabled()) {
             logger.debug("Debug is enabled.");
         }
+
+        Core.doSomething();
     }
 }
